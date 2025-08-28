@@ -35,8 +35,6 @@ TODO
 - pwa → PWA-related code (service worker, manifest)
 - libs/\* → shared libraries (e.g. libs/ui, libs/utils, libs/pwa-utils)
 
-⸻
-
 ### Examples
 
 ```sh
