@@ -1,0 +1,2 @@
+chmod +x .husky/branch-name-check.sh
+sh .husky/branch-name-check.sh

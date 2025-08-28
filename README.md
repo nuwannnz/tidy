@@ -8,10 +8,27 @@ TODO
 
 TODO
 
+## Branching strategy
+
+```sh
+main        → Production-ready
+develop     → Integration / staging branch
+feature/AB-12*   → Feature/topic branches off develop
+hotfix/BC-32*    → Urgent fixes off main, then merged back to main & develop
+release/*   → Optional release prep branches off develop
+```
+
+Rules:
+
+- PRs must target develop (except hotfixes).
+- feature, fix or hotfix branch names must include a ticket number. ex: `feature/PI-1-weekly-view`
+- Merge to main only after testing/QA on develop.
+- Use semantic, scoped commits as described below.
+
 ## Commit Format (Conventional Commits + Scope)
 
 ```sh
-<type>(<scope>): <message>
+<type>(<scope>[,<scope>]): <message>
 ```
 
 ### Types (what kind of change)
@@ -39,7 +56,7 @@ TODO
 
 ```sh
 feat(web): add weekly task board UI
-fix(api): correct task sorting by date
+fix(api,web): correct task sorting by date
 feat(iac): add S3 + CloudFront for web deployment
 refactor(libs/pwa-utils): simplify sync engine
 docs(web): update PWA install instructions
