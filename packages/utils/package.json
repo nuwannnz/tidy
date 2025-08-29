@@ -1,0 +1,36 @@
+{
+  "name": "@tidy/utils",
+  "version": "0.0.1",
+  "nx": {
+    "tags": [
+      "type:utils"
+    ]
+  },
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./logger": {
+      "development": "./src/logger/index.ts",
+      "types": "./dist/logger/index.d.ts",
+      "import": "./dist/logger/index.js",
+      "default": "./dist/logger/index.js"
+    },
+    "./dates": {
+      "development": "./src/dates/index.ts",
+      "types": "./dist/dates/index.d.ts",
+      "import": "./dist/dates/index.js",
+      "default": "./dist/dates/index.js"
+    }
+  },
+  "dependencies": {}
+}
