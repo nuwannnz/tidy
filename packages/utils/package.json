@@ -1,6 +1,11 @@
 {
   "name": "@tidy/utils",
   "version": "0.0.1",
+  "nx": {
+    "tags": [
+      "type:utils"
+    ]
+  },
   "private": true,
   "type": "module",
   "main": "./dist/index.js",

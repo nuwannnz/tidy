@@ -1,6 +1,11 @@
 {
   "name": "@tidy/types",
   "version": "0.0.1",
+  "nx": {
+    "tags": [
+      "type:types"
+    ]
+  },
   "private": true,
   "type": "module",
   "main": "./dist/index.js",

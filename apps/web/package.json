@@ -1,6 +1,9 @@
 {
   "name": "@tidy/web",
   "version": "0.0.1",
+  "nx": {
+    "tags": ["scope:web"]
+  },
   "private": true,
   "dependencies": {
     "next": "~15.2.4",
