@@ -5,7 +5,11 @@ export default [
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist'],
+    ignores: [
+      '**/dist',
+      '**/vite.config.*.timestamp*',
+      '**/vitest.config.*.timestamp*',
+    ],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -16,10 +20,6 @@ export default [
           enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
-            // {
-            //   sourceTag: '*',
-            //   onlyDependOnLibsWithTags: ['*'],
-            // },
             {
               sourceTag: 'scope:web',
               onlyDependOnLibsWithTags: ['type:*', 'scope:*'],
@@ -28,7 +28,10 @@ export default [
               sourceTag: 'scope:service',
               onlyDependOnLibsWithTags: ['type:*'],
             },
-            { sourceTag: 'type:ui', onlyDependOnLibsWithTags: ['type:utils', 'type:types'] },
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: ['type:utils', 'type:types'],
+            },
           ],
         },
       ],
