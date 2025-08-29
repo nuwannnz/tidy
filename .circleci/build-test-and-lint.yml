@@ -14,13 +14,13 @@ jobs:
           command: "npm ci"
       - run:
           name: "Build"
-          command: "npx nx affected:run build"
+          command: "npx nx affected:build --output-style=static"
       - run:
           name: "Test"
-          command: "npx nx affected:run test"
+          command: "npx nx affected:test  --output-style=static"
       - run:
           name: "Lint"
-          command: "npx nx affected:run lint"
+          command: "npx nx affected:lint  --output-style=static"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/guides/orchestrate/workflows/ & https://circleci.com/docs/reference/configuration-reference/#workflows
