@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "infra:run": "chmod +x tools/infra.sh && tools/infra.sh"
   },
   "private": true,
   "devDependencies": {
