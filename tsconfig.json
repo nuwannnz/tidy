@@ -11,6 +11,12 @@
     },
     {
       "path": "./packages/types"
+    },
+    {
+      "path": "./packages/ui"
+    },
+    {
+      "path": "./packages/utils"
     }
   ]
 }
