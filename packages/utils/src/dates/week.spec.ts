@@ -1,4 +1,4 @@
-import { getCurrentWeekRange } from './weeks';
+import { getCurrentWeekRange } from './weeks.js';
 import { expect, describe, test, beforeAll, afterAll, vi } from 'vitest';
 
 describe('getCurrentWeekRange', () => {

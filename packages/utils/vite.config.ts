@@ -30,6 +30,7 @@ export default defineConfig(() => ({
       entry: {
         index: 'src/index.ts',
         logger: 'src/logger/index.ts',
+        dates: 'src/dates/index.ts',
       },
       name: '@tidy/utils',
       fileName: (_format, entryName) => {

@@ -24,6 +24,12 @@
       "types": "./dist/logger/index.d.ts",
       "import": "./dist/logger/index.js",
       "default": "./dist/logger/index.js"
+    },
+    "./dates": {
+      "development": "./src/dates/index.ts",
+      "types": "./dist/dates/index.d.ts",
+      "import": "./dist/dates/index.js",
+      "default": "./dist/dates/index.js"
     }
   },
   "dependencies": {}

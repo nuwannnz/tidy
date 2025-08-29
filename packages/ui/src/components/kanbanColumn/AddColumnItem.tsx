@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Group } from '@mantine/core';
 import { TextField } from '../input';
