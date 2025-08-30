@@ -23,10 +23,10 @@ jobs:
         run: npm ci
 
       - name: Build affected projects
-        run: npx nx affected:build --base=develop --output-style=static
+        run: npx nx affected:build --base=origin/develop --output-style=static
 
       - name: Test affected projects
-        run: npx nx affected:test --base=develop --output-style=static
+        run: npx nx affected:test --base=origin/develop --output-style=static
 
       - name: Lint affected projects
-        run: npx nx affected:lint --base=develop --output-style=static
+        run: npx nx affected:lint --base=origin/develop --output-style=static
