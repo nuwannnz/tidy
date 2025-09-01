@@ -10,7 +10,9 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/src/test-setup.[jt]s"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/build-test-and-lint.yml"
+    ]
   },
   "nxCloudId": "68b06600d941cb2cb1346382",
   "plugins": [
