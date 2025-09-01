@@ -1,0 +1,82 @@
+name: Bump version
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  bump-web-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_PAT }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.19.0'
+
+      - name: Install jq
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y jq
+
+      - name: Bump apps/web version based on last commit
+        run: |
+          set -eo pipefail
+
+          COMMIT_MSG=$(git log -1 --pretty=%B | tr -d '\n')
+          echo "Last commit: $COMMIT_MSG"
+
+          TYPE=$(echo "$COMMIT_MSG" | sed -n 's/^\([a-zA-Z]\+\)(.*):.*/\1/p')
+          SCOPES=$(echo "$COMMIT_MSG" | sed -n 's/^[a-zA-Z]\+(\(.*\)): .*/\1/p' | tr ',' '\n' | tr -d ' ')
+
+          if echo "$SCOPES" | grep -qx "web"; then
+            echo "Scope includes web. Proceeding."
+          else
+            echo "Scope does not include web. Skipping bump."
+            exit 0
+          fi
+
+          if [ "$TYPE" = "feat" ] || [ "$TYPE" = "fix" ]; then
+            echo "Commit type $TYPE is eligible for bump."
+          else
+            echo "Commit type $TYPE is not eligible. Skipping bump."
+            exit 0
+          fi
+
+
+          CURRENT_VERSION=$(jq -r .version apps/web/package.json)
+          echo "Current version: $CURRENT_VERSION"
+
+          MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
+          MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
+          PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
+
+          if [ "$TYPE" = "feat" ]; then
+            MINOR=$((MINOR + 1))
+            PATCH=0
+          elif [ "$TYPE" = "fix" ]; then
+            PATCH=$((PATCH + 1))
+          fi
+
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+          echo "New version: $NEW_VERSION"
+
+          tmpfile=$(mktemp)
+          jq ".version = \"$NEW_VERSION\"" apps/web/package.json > "$tmpfile" && mv "$tmpfile" apps/web/package.json
+
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add apps/web/package.json
+          if git diff --cached --quiet; then
+            echo "No version changes detected. Skipping commit."
+            exit 0
+          fi
+          git commit -m "ci: version bump $NEW_VERSION"
+
+          echo "pushing"
+          git push origin HEAD:develop
