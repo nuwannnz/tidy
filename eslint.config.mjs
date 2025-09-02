@@ -21,6 +21,11 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
+              // other libs cannot depend on service libs
+              sourceTag: '*',
+              notDependOnLibsWithTags: ['scope:service'],
+            },
+            {
               sourceTag: 'scope:web',
               onlyDependOnLibsWithTags: ['type:*', 'scope:*'],
             },
@@ -29,9 +34,10 @@ export default [
               onlyDependOnLibsWithTags: ['type:*'],
             },
             {
-              sourceTag: 'type:ui',
-              onlyDependOnLibsWithTags: ['type:utils', 'type:types'],
+              sourceTag: 'type:*',
+              onlyDependOnLibsWithTags: ['type:*'],
             },
+            
           ],
         },
       ],

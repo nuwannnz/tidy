@@ -31,5 +31,8 @@ module.exports = {
     ],
     // Allow multiple scopes: feat(web,api): ...
     'scope-case': [2, 'always', 'kebab-case'],
+    // Allow JIRA ticket keys (e.g., PI-9) in the subject by disabling strict subject casing
+    // This way subjects like "PI-9 implement X" or "implement X PI-9" won't be rejected
+    'subject-case': [0],
   },
 };

@@ -1,0 +1,44 @@
+{
+  "name": "@tidy/tasks",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "tags": [
+      "scope:service"
+    ],
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "services/tasks/dist",
+          "main": "services/tasks/src/index.ts",
+          "tsConfig": "services/tasks/tsconfig.lib.json",
+          "format": [
+            "esm"
+          ],
+          "declarationRootDir": "services/tasks/src"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7",
+    "@tidy/types": "workspace:*"
+  }
+}

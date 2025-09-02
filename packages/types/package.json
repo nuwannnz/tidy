@@ -20,5 +20,8 @@
       "default": "./dist/index.js"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "aws-lambda": "^1.0.7",
+    "@tidy/utils": "workspace:*"
+  }
 }
