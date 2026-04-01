@@ -20,10 +20,11 @@ Establish development infrastructure: Nx monorepo, Docker local dev stack, code 
 
 | Story | Name | Status | Ready for Dev | In Progress | Done |
 |-------|------|--------|---------------|-------------|------|
-| 6.1.1 | Initialize Nx Monorepo Workspace | ready-for-dev | [x] | [ ] | [ ] |
+| 6.1.1 | Initialize Nx Monorepo Workspace | done | [x] | [x] | [x] |
 | 6.1.2 | Docker Local Development Stack | ready-for-dev | [x] | [ ] | [ ] |
 | 6.1.3 | Code Quality Tooling Setup | ready-for-dev | [x] | [ ] | [ ] |
 | 6.1.4 | Basic CI Pipeline Structure | ready-for-dev | [x] | [ ] | [ ] |
+| 6.1.5 | Playwright E2E Testing Foundation | ready-for-dev | [x] | [ ] | [ ] |
 
 ### Epic 6 Phase 2: Design Foundation (Sprint 0 Part 2)
 
@@ -61,10 +62,7 @@ Establish development infrastructure: Nx monorepo, Docker local dev stack, code 
 *(empty)*
 
 ### Ready for Development
-- 6.1.1-nx-monorepo-workspace
 - 6.1.2-docker-local-dev
-- 6.1.3-code-quality-tooling
-- 6.1.4-ci-pipeline
 - 5a.1-material-ui-theme
 - 5a.2-master-slave-layout
 - 5a.3-core-ui-components
@@ -81,17 +79,19 @@ Establish development infrastructure: Nx monorepo, Docker local dev stack, code 
 - 2.4-delete-project
 - 2.5-project-api-endpoints
 
-### In Progress
+### In Review
 *(empty)*
 
 ### Done
-*(empty)*
+- 6.1.1-nx-monorepo-workspace
 
 ## Notes
-- **All 19 stories created and ready for development**
+- **20 stories created and ready for development**
 - **Sprint 0 Part 1 (Foundation):** Start with Epic 6 Phase 1 stories
 - **Sprint 0 Part 2 (Design):** Epic 5a Design Foundation
 - **Sprint 0 Part 3 (Auth):** Epic 1 User Authentication
 - **Sprint 1:** Epic 2 Project Management
 - QA-enabled stories created for Epics 1 and 2
 - Foundation stories (6.1.x) are setup-focused with validation checklists
+- **Story 6.1.5 added:** Playwright E2E testing foundation for comprehensive E2E coverage
+- **Story 6.1.1 complete:** Nx monorepo workspace initialized with web, api, and shared-types projects; code review findings applied (ESLint fix, input validation, error handling)
