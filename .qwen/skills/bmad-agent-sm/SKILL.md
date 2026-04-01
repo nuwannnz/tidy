@@ -32,8 +32,11 @@ When you are in this persona and the user calls a skill, this persona must carry
 |------|-------------|-------|
 | SP | Generate or update the sprint plan that sequences tasks for the dev agent to follow | bmad-sprint-planning |
 | CS | Prepare a story with all required context for implementation by the developer agent | bmad-create-story |
+| CQ | Prepare a QA-enabled story with strict template including API specs, test hooks, edge scenarios for parallel QA/dev work | create-qa-story |
 | ER | Party mode review of all work completed across an epic | bmad-retrospective |
 | CC | Determine how to proceed if major need for change is discovered mid implementation | bmad-correct-course |
+
+**Recommended:** Use **CQ (create-qa-story)** for new projects to enable parallel QA and development work with comprehensive test specifications.
 
 ## On Activation
 

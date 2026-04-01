@@ -1,0 +1,97 @@
+---
+generated: '2026-04-01'
+last_updated: '2026-04-01'
+project: tidy
+project_key: TIDY
+tracking_system: bmad-sprint-status
+story_location: /Users/nuwankarunarathna/projects/personal/tidy/_bmad-output/implementation-artifacts/stories
+---
+
+# Sprint Status - tidy
+
+## Current Sprint: Sprint 0 (Part 1) - Development Foundation
+
+### Sprint Goal
+Establish development infrastructure: Nx monorepo, Docker local dev stack, code quality tooling, and CI pipeline.
+
+## Story Status
+
+### Epic 6 Phase 1: Development Foundation
+
+| Story | Name | Status | Ready for Dev | In Progress | Done |
+|-------|------|--------|---------------|-------------|------|
+| 6.1.1 | Initialize Nx Monorepo Workspace | ready-for-dev | [x] | [ ] | [ ] |
+| 6.1.2 | Docker Local Development Stack | ready-for-dev | [x] | [ ] | [ ] |
+| 6.1.3 | Code Quality Tooling Setup | ready-for-dev | [x] | [ ] | [ ] |
+| 6.1.4 | Basic CI Pipeline Structure | ready-for-dev | [x] | [ ] | [ ] |
+
+### Epic 6 Phase 2: Design Foundation (Sprint 0 Part 2)
+
+| Story | Name | Status | Ready for Dev | In Progress | Done |
+|-------|------|--------|---------------|-------------|------|
+| 5a.1 | Material UI Theme & Design Tokens | ready-for-dev | [x] | [ ] | [ ] |
+| 5a.2 | Master-Slave Layout Shell | ready-for-dev | [x] | [ ] | [ ] |
+| 5a.3 | Core UI Components (Button, Input, List) | ready-for-dev | [x] | [ ] | [ ] |
+| 5a.4 | Color Picker Component | ready-for-dev | [x] | [ ] | [ ] |
+| 5a.5 | Keyboard Navigation Foundation | ready-for-dev | [x] | [ ] | [ ] |
+
+### Epic 1: User Authentication & Account Management (Sprint 0 Part 3)
+
+| Story | Name | Status | Ready for Dev | In Progress | Done |
+|-------|------|--------|---------------|-------------|------|
+| 1.1 | User Registration with Email/Password | ready-for-dev | [x] | [ ] | [ ] |
+| 1.2 | User Login with Credentials | ready-for-dev | [x] | [ ] | [ ] |
+| 1.3 | User Logout | ready-for-dev | [x] | [ ] | [ ] |
+| 1.4 | Password Reset via Email | ready-for-dev | [x] | [ ] | [ ] |
+| 1.5 | JWT Session Management | ready-for-dev | [x] | [ ] | [ ] |
+
+### Epic 2: Project Creation & Management (Sprint 1)
+
+| Story | Name | Status | Ready for Dev | In Progress | Done |
+|-------|------|--------|---------------|-------------|------|
+| 2.1 | Create New Project | ready-for-dev | [x] | [ ] | [ ] |
+| 2.2 | View Project List (Left Sidebar) | ready-for-dev | [x] | [ ] | [ ] |
+| 2.3 | Edit Project Details | ready-for-dev | [x] | [ ] | [ ] |
+| 2.4 | Delete Project | ready-for-dev | [x] | [ ] | [ ] |
+| 2.5 | Project API Endpoints | ready-for-dev | [x] | [ ] | [ ] |
+
+## Sprint Board
+
+### Backlog
+*(empty)*
+
+### Ready for Development
+- 6.1.1-nx-monorepo-workspace
+- 6.1.2-docker-local-dev
+- 6.1.3-code-quality-tooling
+- 6.1.4-ci-pipeline
+- 5a.1-material-ui-theme
+- 5a.2-master-slave-layout
+- 5a.3-core-ui-components
+- 5a.4-color-picker
+- 5a.5-keyboard-navigation
+- 1.1-user-registration
+- 1.2-user-login
+- 1.3-user-logout
+- 1.4-password-reset
+- 1.5-jwt-session-management
+- 2.1-create-project
+- 2.2-project-list
+- 2.3-edit-project
+- 2.4-delete-project
+- 2.5-project-api-endpoints
+
+### In Progress
+*(empty)*
+
+### Done
+*(empty)*
+
+## Notes
+- **All 19 stories created and ready for development**
+- **Sprint 0 Part 1 (Foundation):** Start with Epic 6 Phase 1 stories
+- **Sprint 0 Part 2 (Design):** Epic 5a Design Foundation
+- **Sprint 0 Part 3 (Auth):** Epic 1 User Authentication
+- **Sprint 1:** Epic 2 Project Management
+- QA-enabled stories created for Epics 1 and 2
+- Foundation stories (6.1.x) are setup-focused with validation checklists
