@@ -8,11 +8,11 @@ Tidy is built as an Nx monorepo workspace with the following structure:
 
 ### Projects
 
-| Project | Type | Tech Stack | Purpose |
-|---------|------|------------|---------|
-| **web** | Frontend | React 18, TypeScript, Vite, Material-UI | Progressive Web App for project management |
-| **api** | Backend | Node.js, Express, TypeScript | RESTful API with AWS Lambda support |
-| **shared-types** | Library | TypeScript | Shared type definitions across projects |
+| Project          | Type     | Tech Stack                              | Purpose                                    |
+| ---------------- | -------- | --------------------------------------- | ------------------------------------------ |
+| **web**          | Frontend | React 18, TypeScript, Vite, Material-UI | Progressive Web App for project management |
+| **api**          | Backend  | Node.js, Express, TypeScript            | RESTful API with AWS Lambda support        |
+| **shared-types** | Library  | TypeScript                              | Shared type definitions across projects    |
 
 ### Directory Structure
 
@@ -122,36 +122,40 @@ npx nx run-many --target=lint --all
 
 ## 📦 Available Scripts
 
-| Script | Command | Description |
-|--------|---------|-------------|
-| `dev:web` | `npx nx serve web` | Start web dev server (port 3000) |
-| `dev:api` | `npx nx serve api` | Start API dev server (port 4000) |
-| `build:web` | `npx nx build web` | Build web for production |
-| `build:api` | `npx nx build api` | Build API for production |
-| `test` | `npx nx affected:test` | Run affected tests |
-| `lint` | `npx nx affected:lint` | Run affected linting |
+| Script      | Command                | Description                      |
+| ----------- | ---------------------- | -------------------------------- |
+| `dev:web`   | `npx nx serve web`     | Start web dev server (port 3000) |
+| `dev:api`   | `npx nx serve api`     | Start API dev server (port 4000) |
+| `build:web` | `npx nx build web`     | Build web for production         |
+| `build:api` | `npx nx build api`     | Build API for production         |
+| `test`      | `npx nx affected:test` | Run affected tests               |
+| `lint`      | `npx nx affected:lint` | Run affected linting             |
 
 ## 🏛️ Shared Types
 
 The `shared-types` library provides type-safe interfaces across the application:
 
 ### User Types
+
 - `User` - User account interface
 - `CreateUserDto` - User registration payload
 - `LoginDto` - Login credentials
 - `AuthResponse` - Authentication response with tokens
 
 ### Project Types
+
 - `Project` - Project entity
 - `CreateProjectDto` - Project creation payload
 - `UpdateProjectDto` - Project update payload
 
 ### Item Types
+
 - `Item` - Task/item entity
 - `CreateItemDto` - Item creation payload
 - `UpdateItemDto` - Item update payload
 
 ### API Types
+
 - `ApiResponse<T>` - Standard API response wrapper
 - `PaginatedResponse<T>` - Paginated list response
 - `ApiError` - Error response structure
@@ -182,17 +186,20 @@ const createProject = (dto: CreateProjectDto) => {
 ### TypeScript
 
 Strict mode is enabled across all projects with the following key settings:
+
 - `strict: true`
 - `strictNullChecks: true`
 - `noImplicitAny: true`
 - `noImplicitReturns: true`
 
 Path aliases:
+
 - `@tidy/shared-types` → `libs/shared-types/src/index.ts`
 
 ### Nx
 
 Nx caching is configured for:
+
 - Build outputs
 - Test results
 - Lint results
@@ -232,6 +239,7 @@ import { something } from '../../apps/api/src/something';
 ### Commit Messages
 
 Follow conventional commits:
+
 - `feat:` - New features
 - `fix:` - Bug fixes
 - `docs:` - Documentation changes
@@ -243,12 +251,14 @@ Follow conventional commits:
 ## 🎯 Roadmap
 
 ### Sprint 0 Part 1 - Development Foundation ✅
+
 - [x] Initialize Nx monorepo workspace
 - [ ] Set up Docker local development stack
 - [ ] Configure code quality tooling
 - [ ] Set up CI pipeline
 
 ### Sprint 0 Part 2 - Design Foundation
+
 - [ ] Material UI theme and design tokens
 - [ ] Master-slave layout shell
 - [ ] Core UI components
@@ -256,6 +266,7 @@ Follow conventional commits:
 - [ ] Keyboard navigation
 
 ### Sprint 0 Part 3 - Authentication
+
 - [ ] User registration
 - [ ] User login
 - [ ] User logout
@@ -263,6 +274,7 @@ Follow conventional commits:
 - [ ] JWT session management
 
 ### Sprint 1 - Project Management
+
 - [ ] Create project
 - [ ] View project list
 - [ ] Edit project

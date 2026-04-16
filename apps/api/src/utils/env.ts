@@ -16,7 +16,9 @@ function getEnvString(key: string, fallback: string): string {
 
 function getEnvNumber(key: string, fallback: number): number {
   const value = process.env[key];
-  if (value === undefined) return fallback;
+  if (value === undefined) {
+    return fallback;
+  }
   const parsed = parseInt(value, 10);
   return isNaN(parsed) ? fallback : parsed;
 }

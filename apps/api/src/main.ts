@@ -1,8 +1,14 @@
+/* eslint-disable no-console */
 import { app } from './app';
 import { env } from './utils/env';
 
+interface LambdaResponse {
+  statusCode: number;
+  body: string;
+}
+
 // Lambda handler
-export const handler = async (event: unknown, _context: unknown) => {
+export const handler = async (event: unknown, _context: unknown): Promise<LambdaResponse> => {
   console.log('Lambda function invoked', event);
 
   // Here you would use serverless-http or similar to handle Express in Lambda

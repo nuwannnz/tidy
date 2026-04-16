@@ -41,7 +41,8 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/web/jest.config.js",
-        "passWithNoTests": true
+        "passWithNoTests": false,
+        "coverage": true
       }
     },
     "lint": {

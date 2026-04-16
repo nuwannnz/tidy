@@ -22,7 +22,7 @@ Establish development infrastructure: Nx monorepo, Docker local dev stack, code 
 |-------|------|--------|---------------|-------------|------|
 | 6.1.1 | Initialize Nx Monorepo Workspace | done | [x] | [x] | [x] |
 | 6.1.2 | Docker Local Development Stack | done | [x] | [x] | [x] |
-| 6.1.3 | Code Quality Tooling Setup | ready-for-dev | [x] | [ ] | [ ] |
+| 6.1.3 | Code Quality Tooling Setup | done | [x] | [x] | [x] |
 | 6.1.4 | Basic CI Pipeline Structure | ready-for-dev | [x] | [ ] | [ ] |
 | 6.1.5 | Playwright E2E Testing Foundation | ready-for-dev | [x] | [ ] | [ ] |
 

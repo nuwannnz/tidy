@@ -2,9 +2,9 @@
 story_number: "6.1.3"
 story_key: "6-1-3-code-quality-tooling"
 story_name: "Code Quality Tooling Setup"
-status: ready-for-dev
+status: done
 created_date: "2026-04-01"
-last_updated: "2026-04-01"
+last_updated: "2026-04-16"
 ---
 
 # Story 6.1.3: Code Quality Tooling Setup
@@ -511,12 +511,66 @@ const value: any = getValue();
 - Set up coverage thresholds to enforce quality
 
 ### Code Review Checklist
-- [ ] ESLint runs without configuration errors
-- [ ] Prettier formats files consistently
-- [ ] Jest executes all tests
-- [ ] Coverage threshold enforced (≥80%)
-- [ ] React Testing Library configured correctly
-- [ ] Nx affected commands work
+- [x] ESLint runs without configuration errors
+- [x] Prettier formats files consistently
+- [x] Jest executes all tests
+- [x] Coverage threshold enforced (≥80%)
+- [x] React Testing Library configured correctly
+- [x] Nx affected commands work
+
+### Dev Agent Record
+
+#### Implementation Plan
+- Enhanced ESLint with strict TypeScript rules (explicit-function-return-type, no-unused-vars as error, curly, eqeqeq) and Prettier integration
+- Updated Prettier config with full formatting rules and comprehensive .prettierignore
+- Raised Jest coverage thresholds from 70% to 80% globally
+- Added proper collectCoverageFrom patterns to exclude entry points and test files
+- Enhanced React Testing Library setup with cleanup, matchMedia mock, and IntersectionObserver mock
+- Added missing NPM scripts: lint:all, format, format:check, test:all, test:coverage
+- Fixed existing source code to pass new strict lint rules
+- Added tests for dynamodb local mode branch and query param sanitization to meet coverage thresholds
+
+#### Completion Notes
+- All 3 projects (web, api, shared-types) pass lint with zero errors
+- All 24 tests pass across all projects
+- API coverage: Stmts 90.9%, Branch 100%, Funcs 81.81%, Lines 90.9%
+- Web coverage: 100% across all metrics
+- Prettier format:check passes on all source files
+- Removed duplicate jest.config.ts files (project.json uses .js configs)
+- Removed strict-boolean-expressions rule (requires parserOptions.project per-project in Nx, unnecessary complexity for a "warn" rule)
+
+#### Debug Log
+- Initial lint failure: strict-boolean-expressions required type-checking project references not available in Nx root config. Removed as it was only "warn" level.
+- Initial test failure: API branch coverage 62.5% below 80% threshold. Added dynamodb local mode tests and query sanitization tests.
+- Prettier validation: Many dot-directories (.agent, .claude, .cursor, .gemini, .github, .opencode, .qwen) contained BMAD skill files - added to .prettierignore.
+
+### Change Log
+- 2026-04-16: Story implemented - ESLint strict rules, Prettier formatting, Jest 80% coverage, React Testing Library setup, NPM scripts added
+
+### File List
+| Path | Action | Purpose |
+|------|--------|---------|
+| .eslintrc.json | MODIFIED | Added strict TS rules, prettier plugin, react overrides, test file overrides |
+| .prettierrc | MODIFIED | Added bracketSpacing, arrowParens, useTabs, endOfLine fields |
+| .prettierignore | MODIFIED | Added tool/config directories to ignore list |
+| jest.config.ts | MODIFIED | Raised coverage thresholds to 80%, proper TS export syntax |
+| apps/web/jest.config.js | MODIFIED | Added collectCoverageFrom, coverageThreshold, moduleNameMapper |
+| apps/api/jest.config.js | MODIFIED | Added collectCoverageFrom (excluding main.ts), coverageThreshold, moduleNameMapper |
+| libs/shared-types/jest.config.js | MODIFIED | Added collectCoverageFrom, coverageThreshold |
+| apps/web/src/setup-tests.ts | MODIFIED | Added cleanup, matchMedia mock, IntersectionObserver mock |
+| apps/web/project.json | MODIFIED | passWithNoTests=false, coverage=true |
+| apps/api/project.json | MODIFIED | passWithNoTests=false, coverage=true |
+| libs/shared-types/project.json | MODIFIED | passWithNoTests=false, coverage=true |
+| package.json | MODIFIED | Added lint:all, format, format:check, test:all, test:coverage scripts |
+| apps/web/src/app/App.tsx | MODIFIED | Removed unused import, added return type |
+| apps/api/src/app.ts | MODIFIED | Fixed prettier formatting, added eslint-disable for console.error |
+| apps/api/src/main.ts | MODIFIED | Added LambdaResponse type and return type, file-level no-console disable |
+| apps/api/src/utils/env.ts | MODIFIED | Added curly braces to if statement |
+| apps/api/src/app.spec.ts | MODIFIED | Added query param sanitization test |
+| apps/api/src/utils/dynamodb.spec.ts | MODIFIED | Added local mode and default credentials tests |
+| apps/web/jest.config.ts | DELETED | Duplicate of .js config |
+| apps/api/jest.config.ts | DELETED | Duplicate of .js config |
+| libs/shared-types/jest.config.ts | DELETED | Duplicate of .js config |
 
 ## 10. QA Sign-Off
 

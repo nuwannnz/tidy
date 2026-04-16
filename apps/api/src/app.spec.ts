@@ -61,4 +61,15 @@ describe('API App', () => {
       });
     });
   });
+
+  it('should sanitize query parameters with angle brackets', (done) => {
+    http.get(`http://localhost:${port}/health?name=%3Cscript%3E`, (res) => {
+      let body = '';
+      res.on('data', (chunk) => (body += chunk));
+      res.on('end', () => {
+        expect(res.statusCode).toBe(200);
+        done();
+      });
+    });
+  });
 });

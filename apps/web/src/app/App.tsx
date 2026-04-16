@@ -1,7 +1,6 @@
 import React from 'react';
-import { Project } from '@tidy/shared-types';
 
-export default function App() {
+export default function App(): React.ReactElement {
   return (
     <div className="app">
       <h1>Tidy - Project Management</h1>

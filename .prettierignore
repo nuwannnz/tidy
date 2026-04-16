@@ -1,5 +1,19 @@
-# Add files here to ignore them from prettier formatting
-/dist
-/coverage
-/.nx/cache
-/.nx/workspace-data
+dist
+node_modules
+coverage
+*.min.js
+/.nx
+_bmad
+_bmad-output
+.agent
+.claude
+.cursor
+.gemini
+.github
+.opencode
+.qwen
+.windsurf
+docs
+docker
+tools
+AGENTS.md

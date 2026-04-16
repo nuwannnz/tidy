@@ -12,13 +12,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use((req: Request, res: Response, next: NextFunction) => {
   // Sanitize URL parameters
   if (req.params) {
-    Object.keys(req.params).forEach(key => {
+    Object.keys(req.params).forEach((key) => {
       req.params[key] = String(req.params[key]).replace(/[<>]/g, '');
     });
   }
   // Sanitize query parameters
   if (req.query) {
-    Object.keys(req.query).forEach(key => {
+    Object.keys(req.query).forEach((key) => {
       if (typeof req.query[key] === 'string') {
         req.query[key] = String(req.query[key]).replace(/[<>]/g, '');
       }
@@ -59,6 +59,7 @@ app.get('/', (req: Request, res: Response) => {
 // Global error handler
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
+  // eslint-disable-next-line no-console
   console.error('Unhandled error:', err);
 
   const errorResponse: ApiError = {
