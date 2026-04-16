@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npx *)",
       "Bash(yes)",
-      "Bash(find *)"
+      "Bash(find *)",
+      "Bash(python3 *)"
     ]
   },
   "$version": 3
