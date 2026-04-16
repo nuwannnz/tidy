@@ -1,8 +1,8 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import { ApiResponse, ApiError } from '@tidy/shared-types';
+import { env } from './utils/env';
 
 const app: Application = express();
-const PORT = process.env.PORT || 4000;
 
 // Middleware
 app.use(express.json());
@@ -37,6 +37,15 @@ app.get('/health', (req: Request, res: Response) => {
   res.status(200).json(response);
 });
 
+// Versioned health check endpoint (used by Docker local dev)
+app.get('/api/v1/health', (req: Request, res: Response) => {
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    environment: env.NODE_ENV,
+  });
+});
+
 // Root endpoint
 app.get('/', (req: Request, res: Response) => {
   const response: ApiResponse<string> = {
@@ -48,9 +57,10 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // Global error handler
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
   console.error('Unhandled error:', err);
-  
+
   const errorResponse: ApiError = {
     statusCode: 500,
     message: 'Internal server error',
@@ -58,15 +68,8 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     timestamp: new Date().toISOString(),
     path: req.path,
   };
-  
+
   res.status(500).json(errorResponse);
 });
 
 export { app };
-
-// Only start server if not in Lambda environment
-if (process.env.AWS_LAMBDA_FUNCTION_NAME === undefined) {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}`);
-  });
-}

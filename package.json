@@ -8,7 +8,12 @@
     "build:web": "npx nx build web",
     "build:api": "npx nx build api",
     "test": "npx nx affected:test",
-    "lint": "npx nx affected:lint"
+    "lint": "npx nx affected:lint",
+    "dev:local": "docker compose -f docker/docker-compose.yml up -d",
+    "dev:local:down": "docker compose -f docker/docker-compose.yml down",
+    "dev:local:logs": "docker compose -f docker/docker-compose.yml logs -f",
+    "dev:local:rebuild": "docker compose -f docker/docker-compose.yml up -d --build",
+    "dev:local:seed": "npx ts-node tools/scripts/seed-local-db.ts"
   },
   "private": true,
   "dependencies": {
@@ -61,6 +66,8 @@
     "nx": "18.0.0",
     "prettier": "^3.2.0",
     "ts-jest": "^29.4.8",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3",
     "vite": "~5.0.0"

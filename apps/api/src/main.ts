@@ -1,9 +1,10 @@
 import { app } from './app';
+import { env } from './utils/env';
 
 // Lambda handler
-export const handler = async (event: any, context: any) => {
+export const handler = async (event: unknown, _context: unknown) => {
   console.log('Lambda function invoked', event);
-  
+
   // Here you would use serverless-http or similar to handle Express in Lambda
   // For now, return a simple response
   return {
@@ -15,4 +16,12 @@ export const handler = async (event: any, context: any) => {
   };
 };
 
-console.log('API module loaded');
+// Local development server (Docker or direct)
+if (env.NODE_ENV === 'local' || env.AWS_LAMBDA_FUNCTION_NAME === undefined) {
+  app.listen(env.PORT, () => {
+    console.log(`API running locally on port ${env.PORT}`);
+    if (env.DYNAMODB_ENDPOINT) {
+      console.log(`DynamoDB endpoint: ${env.DYNAMODB_ENDPOINT}`);
+    }
+  });
+}
