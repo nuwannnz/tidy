@@ -2,9 +2,9 @@
 story_number: "6.1.5"
 story_key: "6-1-5-playwright-e2e-setup"
 story_name: "Playwright E2E Testing Foundation"
-status: ready-for-dev
+status: done
 created_date: "2026-04-01"
-last_updated: "2026-04-01"
+last_updated: "2026-04-16"
 ---
 
 # Story 6.1.5: Playwright E2E Testing Foundation
@@ -397,25 +397,47 @@ npx playwright show-report
 ## 9. Dev Agent Record
 
 ### Files Created/Modified
-| Path | Action | Purpose | Lines |
-|------|--------|---------|-------|
-| `tests/playwright.config.ts` | CREATE | Playwright configuration | ~60 |
-| `tests/e2e/auth/login.spec.ts` | CREATE | Login E2E tests | ~30 |
-| `tests/e2e/api/auth.spec.ts` | CREATE | Auth API tests | ~40 |
-| `tests/fixtures/test-fixtures.ts` | CREATE | Test fixtures | ~40 |
-| `tests/fixtures/api-fixtures.ts` | CREATE | API test fixtures | ~30 |
-| `tests/page-objects/login.page.ts` | CREATE | Login page object | ~30 |
-| `tests/page-objects/register.page.ts` | CREATE | Register page object | ~30 |
-| `tests/page-objects/dashboard.page.ts` | CREATE | Dashboard page object | ~25 |
-| `tests/utils/test-data.ts` | CREATE | Test data generators | ~40 |
-| `.env.test` | CREATE | Test environment variables | ~5 |
-| `package.json` | UPDATE | Add Playwright scripts | ~10 |
+| Path | Action | Purpose |
+|------|--------|---------|
+| `apps/e2e/project.json` | CREATE | Nx project config with e2e, e2e-ui, e2e-api, e2e-report targets |
+| `apps/e2e/tsconfig.json` | CREATE | TypeScript config for e2e project |
+| `apps/e2e/playwright.config.ts` | CREATE | Base Playwright config (all tests, 3 browsers) |
+| `apps/e2e/playwright.ui.config.ts` | CREATE | UI-only Playwright config (3 browsers) |
+| `apps/e2e/playwright.api.config.ts` | CREATE | API-only Playwright config (single project) |
+| `apps/e2e/.env.test` | CREATE | Test environment variables |
+| `apps/e2e/fixtures/test-fixtures.ts` | CREATE | UI test fixtures with page objects |
+| `apps/e2e/fixtures/api-fixtures.ts` | CREATE | API test fixtures with authenticated context |
+| `apps/e2e/page-objects/base.page.ts` | CREATE | Base page object class |
+| `apps/e2e/page-objects/login.page.ts` | CREATE | Login page object |
+| `apps/e2e/page-objects/register.page.ts` | CREATE | Register page object |
+| `apps/e2e/page-objects/dashboard.page.ts` | CREATE | Dashboard page object |
+| `apps/e2e/page-objects/projects.page.ts` | CREATE | Projects page object |
+| `apps/e2e/utils/test-data.ts` | CREATE | Test data generators (unique emails, project names) |
+| `apps/e2e/utils/api-helper.ts` | CREATE | API helper functions (register, login) |
+| `apps/e2e/src/ui/auth/login.spec.ts` | CREATE | Login UI E2E tests (5 tests) |
+| `apps/e2e/src/ui/auth/register.spec.ts` | CREATE | Register UI E2E tests (4 tests) |
+| `apps/e2e/src/ui/auth/logout.spec.ts` | CREATE | Logout UI E2E tests (2 tests) |
+| `apps/e2e/src/ui/projects/create.spec.ts` | CREATE | Create project UI E2E test |
+| `apps/e2e/src/ui/projects/list.spec.ts` | CREATE | Project list UI E2E test |
+| `apps/e2e/src/api/auth.spec.ts` | CREATE | Auth API E2E tests (5 tests) |
+| `apps/e2e/src/api/projects.spec.ts` | CREATE | Projects API E2E tests (3 tests) |
+| `package.json` | UPDATE | Added e2e convenience scripts |
+| `.gitignore` | UPDATE | Added playwright-report/, test-results/, apps/e2e/.env.test |
 
 ### Implementation Notes
-- Install Playwright browsers after package installation
-- Configure webServer to start dev server automatically
-- Use parallel execution for faster CI runs
-- Enable screenshots and video on failure for debugging
+- **Structured as Nx project** (`apps/e2e`) with separate targets: `e2e` (all), `e2e-ui` (UI only), `e2e-api` (API only)
+- Playwright v1.59.1 installed with Chromium, Firefox, and WebKit browsers
+- Separate configs allow independent execution: `nx run e2e:e2e-api`, `nx run e2e:e2e-ui`
+- UI tests run across 3 browsers (39 tests), API tests run on single project (8 tests) = 47 total test cases
+- webServer config auto-starts dev servers with `reuseExistingServer` for local dev
+- Screenshots on failure, video retained on failure, trace on first retry
+- HTML reporter + JUnit XML in CI for artifact upload
+- All existing tests (3/3) and linting pass with no regressions
+
+### Change Log
+| Date | Change |
+|------|--------|
+| 2026-04-16 | Initial implementation: Playwright E2E testing foundation as Nx project with UI/API test separation |
 
 ### Code Review Checklist
 - [ ] Playwright configuration is correct
