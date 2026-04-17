@@ -1,0 +1,37 @@
+{
+  "name": "e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/e2e/src",
+  "projectType": "application",
+  "tags": ["scope:e2e"],
+  "targets": {
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/e2e",
+        "command": "npx playwright test"
+      }
+    },
+    "e2e-ui": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/e2e",
+        "command": "npx playwright test --config=playwright.ui.config.ts"
+      }
+    },
+    "e2e-api": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/e2e",
+        "command": "npx playwright test --config=playwright.api.config.ts"
+      }
+    },
+    "e2e-report": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/e2e",
+        "command": "npx playwright show-report ../../playwright-report"
+      }
+    }
+  }
+}

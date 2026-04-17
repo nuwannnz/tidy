@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "sourceMap": true,
+    "outDir": "../../dist/apps/e2e",
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts", "fixtures/**/*.ts", "page-objects/**/*.ts", "utils/**/*.ts", "*.config.ts"]
+}

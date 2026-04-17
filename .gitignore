@@ -47,3 +47,8 @@ Thumbs.db
 
 # Docker
 docker/dynamodb-data
+
+# Playwright
+playwright-report/
+test-results/
+apps/e2e/.env.test
