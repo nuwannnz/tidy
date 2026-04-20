@@ -2,7 +2,7 @@
 story_number: "6.1.5"
 story_key: "6-1-5-playwright-e2e-setup"
 story_name: "Playwright E2E Testing Foundation"
-status: review
+status: done
 created_date: "2026-04-01"
 last_updated: "2026-04-16"
 ---
