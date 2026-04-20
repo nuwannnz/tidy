@@ -1,6 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import { ApiResponse, ApiError } from '@tidy/shared-types';
 import { env } from './utils/env';
+import { authRouter } from './routes/auth';
 
 const app: Application = express();
 
@@ -26,6 +27,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   }
   next();
 });
+
+// Auth routes
+app.use('/api/v1/auth', authRouter);
 
 // Health check endpoint
 app.get('/health', (req: Request, res: Response) => {

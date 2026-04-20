@@ -2,7 +2,7 @@
 story_number: "1.1"
 story_key: "1-1-user-registration"
 story_name: "User Registration with Email/Password"
-status: ready-for-dev
+status: review
 created_date: "2026-04-01"
 last_updated: "2026-04-01"
 ---
@@ -487,22 +487,37 @@ cd apps/api && git checkout HEAD~1 && npm run deploy
 ## 9. Dev Agent Record
 
 ### Agent Model Used
-{{agent_model_name_version}}
+claude-sonnet-4-6
 
 ### Files Created/Modified
-| Path | Action | Purpose | Lines |
-|------|--------|---------|-------|
-| `apps/api/src/routes/auth.ts` | CREATE | Registration API endpoint | ~80 |
-| `apps/api/src/services/auth.service.ts` | CREATE | Auth business logic | ~120 |
-| `apps/api/src/repositories/user.repository.ts` | CREATE | DynamoDB user access | ~60 |
-| `apps/web/src/features/auth/RegistrationForm.tsx` | CREATE | Registration form | ~150 |
-| `apps/web/src/pages/RegisterPage.tsx` | CREATE | Registration page | ~40 |
-| `apps/web/src/store/authSlice.ts` | CREATE | Auth state management | ~80 |
-| `tests/e2e/auth-registration.spec.ts` | CREATE | E2E tests | ~100 |
-| `tests/api/auth-register.spec.ts` | CREATE | API tests | ~80 |
+| Path | Action | Purpose |
+|------|--------|---------|
+| `apps/api/src/repositories/user.repository.ts` | CREATE | DynamoDB user create/findByEmail with GSI1 email lookup |
+| `apps/api/src/services/auth.service.ts` | CREATE | Registration logic: bcrypt hash (cost 12) + JWT (7d) |
+| `apps/api/src/routes/auth.ts` | CREATE | POST /api/v1/auth/register with Zod validation |
+| `apps/api/src/app.ts` | MODIFY | Mount authRouter at /api/v1/auth |
+| `apps/api/src/repositories/user.repository.spec.ts` | CREATE | Unit tests for UserRepository (mock dynamoDb) |
+| `apps/api/src/services/auth.service.spec.ts` | CREATE | Unit tests for AuthService (mock bcrypt/jwt/repo) |
+| `apps/api/src/routes/auth.spec.ts` | CREATE | Route integration tests (real server, mocked service) |
+| `apps/web/src/store/authSlice.ts` | CREATE | Redux auth slice with registerUser thunk |
+| `apps/web/src/store/store.ts` | CREATE | Redux store configuration |
+| `apps/web/src/features/auth/RegistrationForm.tsx` | CREATE | Controlled form with client-side validation + confirm password |
+| `apps/web/src/pages/RegisterPage.tsx` | CREATE | Page container dispatching registerUser and navigating to /dashboard |
+| `apps/web/src/app/App.tsx` | MODIFY | Added BrowserRouter + /register route |
+| `apps/web/src/main.tsx` | MODIFY | Wrapped App in Redux Provider |
+| `apps/web/src/app/App.spec.tsx` | MODIFY | Updated tests for routing-based App |
+| `apps/web/src/features/auth/RegistrationForm.spec.tsx` | CREATE | Unit tests for form validation (all ACs covered) |
+| `apps/web/src/store/authSlice.spec.ts` | CREATE | Unit tests for auth reducer and thunk states |
 
 ### Implementation Notes
-[To be filled during implementation]
+- Passwords hashed with bcrypt cost factor 12 (never stored or returned in plain text)
+- Email normalized to lowercase before storing and querying (case-insensitive uniqueness via DynamoDB ConditionExpression)
+- DynamoDB ConditionExpression `attribute_not_exists(GSI1PK)` enforces email uniqueness at write time
+- JWT signed with JWT_SECRET from env, 7-day expiry
+- Zod validates email + password server-side; RegistrationForm validates client-side on blur and submit
+- Confirm password field added to match existing E2E page objects (register.page.ts)
+- `react-hook-form` not used (not installed); controlled useState used instead with zod patterns
+- 48 tests total: 29 API + 19 web — all passing, lint clean
 
 ### Code Review Checklist
 - [ ] Unit tests written and passing (>80% coverage)
